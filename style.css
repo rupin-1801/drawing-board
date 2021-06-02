@@ -52,7 +52,7 @@ button{
 p{
     font-size: xx-small;
     text-align: center;
-    width:100%;
+    width:90%;
 }
 /* color picker styling and positioning */
 
@@ -68,7 +68,23 @@ p{
 }
 
 /* media queries */
-@media (min-width:600px){
+@media (min-width:500px) and  (max-width:650px){
+    h3{
+        font-size: large;
+    }
+    ul{
+        font-size: medium;
+    }
+    p{
+        display:none;
+    }
+    button{
+        height:20px;
+        width:50px;
+        font-size: 10px;
+    }
+}
+@media (min-width:650px){
     h3{
         font-size: x-large;
     }
