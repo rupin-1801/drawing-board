@@ -2,33 +2,23 @@ const canv = document.querySelector('canvas');
 const ctx = canv.getContext('2d');
 canv.style.cursor="grabbing";
 
-let strokeWidth = 1, pressed = false;
+const cCanvas = ['Control', 'x'];
+let strokeWidth = 1, pressed = false, width, height;
 let keys = [];
 
 window.onload = window.onresize = function(){
-    let width = canv.width = window.innerWidth;
-    let height = canv.height = window.innerHeight;
+    width = canv.width = window.innerWidth;
+    height = canv.height = window.innerHeight;
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillRect(0, 0, width, height);
 }
 
-// key events callbacks...
+// helper methods..
 
-document.onkeydown = function(e){
-    keys.push(e.key);
-    if(e.key == '+') strokeWidth++;
-    if(e.key == '-') if(strokeWidth>1) strokeWidth--;
+function clearCanvas(){
+    ctx.fillStyle='black';
+    ctx.fillRect(0,0,width,height);
 }
-
-document.onkeyup = function(e){
-    keys.pop(e.key);
-}
-
-// mouse events callbacks..
-
-document.onmousemove = draw;
-document.onmousedown = () => pressed = true;;
-document.onmouseup = () => pressed = false;;
 
 function degToRad(angle){
     return angle * Math.PI / 180;
@@ -47,3 +37,25 @@ function draw(e){
         requestAnimationFrame(draw);
     }
 }
+
+// keys events...
+
+document.onkeydown = function(e){
+    keys.push(e.key);
+    if(e.key == '+') strokeWidth++;
+    if(e.key == '-') if(strokeWidth>1) strokeWidth--;
+    keys = new Set(keys);
+    keys = Array.from(keys);
+    if(JSON.stringify(keys) == JSON.stringify(cCanvas))
+        clearCanvas();   
+}
+
+document.onkeyup = function(e){
+    keys.pop(e.key);
+}
+
+// mouse events..
+
+document.onmousemove = draw;
+document.onmousedown = () => pressed = true;;
+document.onmouseup = () => pressed = false;;
