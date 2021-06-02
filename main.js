@@ -4,7 +4,7 @@ const ctx = canv.getContext('2d');
 canv.style.cursor="grabbing";
 
 const cCanvas = ['Control', 'x'];
-let strokeWidth = 1, width, height;
+let strokeWidth = 1, width, height, savedColor;
 let pressed = false, ready = false; 
 let keys = [];
 
@@ -62,6 +62,18 @@ document.onkeydown = function(e){
     keys.push(e.key);
     if(e.key == '+') strokeWidth++;
     if(e.key == '-') if(strokeWidth>1) strokeWidth--;
+    if(e.key == 'e'){
+        savedColor = changer.value;
+        savedStroke = strokeWidth;
+        strokeWidth = 4;
+        changer.value = '#000000';
+        changer.disabled = true;
+    }
+    if(e.key == 'Escape' && changer.disabled){
+        changer.disabled = false;
+        strokeWidth = savedStroke;
+        changer.value = savedColor;
+    }
     keys = new Set(keys);
     keys = Array.from(keys);
     if(JSON.stringify(keys) == JSON.stringify(cCanvas))
