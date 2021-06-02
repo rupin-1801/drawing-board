@@ -2,6 +2,60 @@ body{
     box-sizing: border-box;
     margin: 0px;
 }
+
+/* instructions box styling */
+
+#instructions{
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    width:50vw;
+    height: 50vw;
+    max-width: 350px;
+    max-height: 350px;
+    position: absolute;
+    margin:auto;
+    top:0px;
+    bottom:0px;
+    right:0px;
+    left:0px;
+    display:none;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+h3{
+    margin:0px;
+    font-size: large;
+}
+.content{
+    display: flex;
+    width:40vw;
+    max-width:300px;
+    justify-content: space-between;
+}
+ul{
+    list-style-type: none;
+    padding:0px;
+    font-size: x-small;
+}
+button{
+    border:1px solid white;
+    border-radius: 3px;
+    height:15px;
+    width:40px;
+    font-size: xx-small;
+    cursor:pointer;
+    background-color: transparent;
+    color:white;
+}
+p{
+    font-size: xx-small;
+    text-align: center;
+    width:100%;
+}
+/* color picker styling and positioning */
+
 .color-pick{
     position: absolute;
     margin-top: 10px;
@@ -11,4 +65,22 @@ body{
     position:absolute;
     margin-top: 10px;
     color:white;
+}
+
+/* media queries */
+@media (min-width:600px){
+    h3{
+        font-size: x-large;
+    }
+    ul{
+        font-size: large;
+    }
+    p{
+        display:none;
+    }
+    button{
+        height:30px;
+        width:60px;
+        font-size: 15px;
+    }
 }

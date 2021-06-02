@@ -4,18 +4,17 @@ const ctx = canv.getContext('2d');
 canv.style.cursor="grabbing";
 
 const cCanvas = ['Control', 'x'];
-let strokeWidth = 1, pressed = false, width, height;
+let strokeWidth = 1, width, height;
+let pressed = false, ready = false; 
 let keys = [];
 
-window.onload = window.onresize = function(){
+// helper methods...
+
+function reInitialize(){
     width = canv.width = window.innerWidth;
     height = canv.height = window.innerHeight;
-    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-    ctx.fillRect(0, 0, width, height);
-    changer.value="#FFFFFF";
+    clearCanvas();
 }
-
-// helper methods..
 
 function clearCanvas(){
     ctx.fillStyle='black';
@@ -26,7 +25,7 @@ function degToRad(angle){
     return angle * Math.PI / 180;
 }
 
-// function to draw on board at mousemove event..
+// function to draw on board at mousemove event...
 
 function draw(e){
     if(pressed){
@@ -38,6 +37,23 @@ function draw(e){
         ctx.fill();
         requestAnimationFrame(draw);
     }
+}
+
+// click events...
+
+got.onclick = function(){
+    ready = true;
+    instructions.style.display = "none";
+}
+
+// window events...
+
+window.onresize = reInitialize();
+
+window.onload = function(){
+    changer.value="#FFFFFF";
+    instructions.style.display = "flex";
+    clearCanvas;
 }
 
 // keys events...
@@ -56,8 +72,10 @@ document.onkeyup = function(e){
     keys.pop(e.key);
 }
 
-// mouse events..
+// mouse events...
 
 document.onmousemove = draw;
-document.onmousedown = () => pressed = true;;
+document.onmousedown = () => {
+    if(ready) pressed = true;
+};
 document.onmouseup = () => pressed = false;;
