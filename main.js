@@ -11,13 +11,9 @@ let keys = [];
 
 // helper methods...
 
-function reInitialize(){
+function clearCanvas(){
     width = canv.width = window.innerWidth;
     height = canv.height = window.innerHeight;
-    clearCanvas();
-}
-
-function clearCanvas(){
     ctx.fillStyle='black';
     ctx.fillRect(0,0,width,height);
 }
@@ -45,17 +41,17 @@ function draw(e){
 got.onclick = function(){
     ready = true;
     instructions.style.display = "none";
-}
+};
 
 // window events...
 
-window.onresize = reInitialize();
+window.onresize = clearCanvas;
 
 window.onload = function(){
     changer.value="#FFFFFF";
     instructions.style.display = "flex";
-    clearCanvas;
-}
+    clearCanvas();
+};
 
 // keys events...
 
