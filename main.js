@@ -1,3 +1,4 @@
+const changer = document.querySelector('input[type="color"]');
 const canv = document.querySelector('canvas');
 const ctx = canv.getContext('2d');
 canv.style.cursor="grabbing";
@@ -11,6 +12,7 @@ window.onload = window.onresize = function(){
     height = canv.height = window.innerHeight;
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillRect(0, 0, width, height);
+    changer.value="#FFFFFF";
 }
 
 // helper methods..
@@ -31,7 +33,7 @@ function draw(e){
         let posX = e.clientX;
         let posY = e.clientY;
         ctx.beginPath();
-        ctx.fillStyle = "white";
+        ctx.fillStyle = changer.value;
         ctx.arc(posX, posY, strokeWidth, degToRad(0), degToRad(360), false);
         ctx.fill();
         requestAnimationFrame(draw);
