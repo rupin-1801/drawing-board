@@ -17,7 +17,6 @@ function clearCanvas(){
     ctx.fillStyle='black';
     ctx.fillRect(0,0,width,height);
 }
-console.log(${{secrets.Code}});
 
 function degToRad(angle){
     return angle * Math.PI / 180;
